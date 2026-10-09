@@ -1,1 +1,122 @@
-<p>login works!</p>
+<main class="login-page">
+	<section class="brand-panel" aria-labelledby="brand-heading">
+		<div class="brand-panel__content">
+			<a class="brand" href="#" aria-label="WareSpace home">
+				<span class="brand__icon" aria-hidden="true">
+					<svg viewBox="0 0 32 32" fill="none">
+						<path d="M4 13.2 16 5l12 8.2v13.3H4V13.2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+						<path d="M10 26.5v-8h12v8M10 13h.01M16 13h.01M22 13h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+					</svg>
+				</span>
+				<span>WareSpace</span>
+			</a>
+
+			<div class="brand-copy">
+				<p class="brand-copy__eyebrow">WAREHOUSE OPERATIONS, IN SYNC</p>
+				<h1 id="brand-heading">Smarter Warehouse<br />Space Management.</h1>
+				<p class="brand-copy__description">
+					Manage storage spaces, track occupancy, organize client operations, and stay on top of rental payments — all in one place.
+				</p>
+
+				<ul class="feature-list" aria-label="WareSpace capabilities">
+					<li>
+						<span class="feature-list__mark" aria-hidden="true">
+							<svg viewBox="0 0 20 20" fill="none"><path d="m4.5 10.2 3.4 3.3 7.6-7.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+						</span>
+						Space utilization
+					</li>
+					<li>
+						<span class="feature-list__mark" aria-hidden="true">
+							<svg viewBox="0 0 20 20" fill="none"><path d="m4.5 10.2 3.4 3.3 7.6-7.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+						</span>
+						Client management
+					</li>
+					<li>
+						<span class="feature-list__mark" aria-hidden="true">
+							<svg viewBox="0 0 20 20" fill="none"><path d="m4.5 10.2 3.4 3.3 7.6-7.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+						</span>
+						Rental tracking
+					</li>
+				</ul>
+			</div>
+
+			<p class="brand-panel__footnote">ONE CLEAR VIEW OF EVERY SPACE.</p>
+		</div>
+		<div class="brand-panel__shade" aria-hidden="true"></div>
+	</section>
+
+	<section class="form-panel" aria-labelledby="welcome-heading">
+		<div class="login-form-wrap">
+			<a class="brand brand--mobile" href="#" aria-label="WareSpace home">
+				<span class="brand__icon" aria-hidden="true">
+					<svg viewBox="0 0 32 32" fill="none">
+						<path d="M4 13.2 16 5l12 8.2v13.3H4V13.2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+						<path d="M10 26.5v-8h12v8M10 13h.01M16 13h.01M22 13h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+					</svg>
+				</span>
+				<span>WareSpace</span>
+			</a>
+
+			<header class="form-heading">
+				<p class="form-heading__eyebrow">WARESPACE WORKSPACE</p>
+				<h2 id="welcome-heading">Welcome Back</h2>
+				<p>Sign in to access your warehouse workspace.</p>
+			</header>
+
+			<form class="login-form" aria-label="Sign in">
+				<div class="field-group">
+					<label class="form-label" for="email">Email Address</label>
+					<div class="input-shell">
+						<svg class="input-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+							<rect x="3.5" y="5" width="17" height="14" rx="2.5" stroke="currentColor" stroke-width="1.7" />
+							<path d="m5 7 7 5.5L19 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+						<input class="form-control"
+                         id="email" 
+                         name="emailId"
+                         [(ngModel)]="loginObj.emailId"
+                          type="email" 
+                          autocomplete="username"
+                           placeholder="Enter your work email" />
+					</div>
+				</div>
+
+				<div class="field-group">
+					<label class="form-label" for="password">Password</label>
+					<div class="input-shell">
+						<svg class="input-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+							<rect x="4.5" y="10" width="15" height="11" rx="2.2" stroke="currentColor" stroke-width="1.7" />
+							<path d="M8 10V7a4 4 0 0 1 8 0v3m-4 4v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+						</svg>
+						<input class="form-control" id="password" [(ngModel)]="loginObj.password"
+                         name="password" type="password" autocomplete="current-password" placeholder="Enter your password" />
+						<button class="password-toggle" type="button" aria-label="Show password" title="Show password">
+							<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+								<path d="M2.8 12s3.2-6 9.2-6 9.2 6 9.2 6-3.2 6-9.2 6-9.2-6-9.2-6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+								<circle cx="12" cy="12" r="2.6" stroke="currentColor" stroke-width="1.7" />
+							</svg>
+						</button>
+					</div>
+				</div>
+
+				<div class="form-options">
+					<div class="form-check">
+						<input class="form-check-input" id="remember-me" name="remember-me" type="checkbox" />
+						<label class="form-check-label" for="remember-me">Remember me</label>
+					</div>
+					<a class="forgot-link" href="#forgot-password">Forgot Password?</a>
+				</div>
+
+				<button class="btn btn-primary sign-in-button" type="button" (click)="onLogin()">Sign In</button>
+			</form>
+
+			<p class="secure-note">
+				<svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+					<rect x="4.3" y="8.5" width="11.4" height="8.2" rx="1.8" stroke="currentColor" stroke-width="1.5" />
+					<path d="M6.8 8.5V6.2a3.2 3.2 0 0 1 6.4 0v2.3m-3.2 3v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+				</svg>
+				Secure access to your warehouse operations.
+			</p>
+		</div>
+	</section>
+</main>
