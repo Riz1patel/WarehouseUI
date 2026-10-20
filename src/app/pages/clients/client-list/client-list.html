@@ -1,1 +1,154 @@
-<p>client-list works!</p>
+<section class="clients-page" aria-labelledby="clients-title">
+    <header class="clients-header">
+        <div>
+            <p class="clients-eyebrow">WORKSPACE DIRECTORY</p>
+            <h1 id="clients-title">Clients</h1>
+            <p class="clients-subtitle">Manage customer profiles and contact details.</p>
+        </div>
+        <a class="btn btn-primary add-client-button" routerLink="/admin/client-form/0">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <span>Add customer</span>
+        </a>
+    </header>
+
+    <div class="clients-toolbar">
+        <div class="client-count"><strong>1</strong> customer</div>
+        <div class="clients-toolbar__actions">
+            <label class="client-search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <span class="visually-hidden">Search customers</span>
+                <input class="form-control" type="search" placeholder="Search customers..."
+                    aria-label="Search customers" />
+            </label>
+            <button class="filter-button" type="button" aria-label="Filter customers">
+                <i class="fa fa-filter" aria-hidden="true"></i>
+                <span>Filter</span>
+                <i class="fa fa-angle-down filter-button__chevron" aria-hidden="true"></i>
+            </button>
+            <div class="view-switch" role="group" aria-label="Customer list view">
+                <button (click)="isCardView = !isCardView" [ngClass]="isCardView ? 'view-switch__button--active':''"
+                    class="view-switch__button " type="button" aria-pressed="true" title="Card view">
+                    <i class="fa fa-th-large" aria-hidden="true"></i>
+                    <span>Cards</span>
+                </button>
+                <button class="view-switch__button" (click)="isCardView = !isCardView"
+                    [ngClass]="!isCardView ? 'view-switch__button--active':''" type="button" aria-pressed="false"
+                    title="Table view">
+                    <i class="fa fa-list" aria-hidden="true"></i>
+                    <span>Table</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    @if(isCardView == true){
+
+    <section class="client-view-section" aria-labelledby="card-view-heading">
+        <div class="view-section-heading">
+            <h2 id="card-view-heading">Card view</h2>
+            <span>Customer overview</span>
+        </div>
+
+        <div class="row g-3">
+            @for (item of clientList(); track $index) {
+            <div class="col-12 col-md-6">
+                <article class="customer-card">
+                    <div class="customer-card__header">
+                        <div class="customer-identity">
+                            <div class="customer-title-group">
+                                <span>Customer ID <strong>{{item.id}}</strong></span>
+                            </div>
+                        </div>
+                        <span class="customer-tag"><i class="fa fa-building-o" aria-hidden="true"></i>
+                            {{item.name}}</span>
+                    </div>
+
+                    <dl class="customer-details">
+                        <div class="customer-detail">
+                            <dt><i class="fa fa-map-marker" aria-hidden="true"></i> Address</dt>
+                            <dd>{{item.address}}</dd>
+                        </div>
+                        <div class="customer-detail">
+                            <dt><i class="fa fa-phone" aria-hidden="true"></i> Mobile</dt>
+                            <dd>{{item.mobile}}</dd>
+                        </div>
+                        <div class="customer-detail">
+                            <dt><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</dt>
+                            <dd><a [href]="item.email">{{item.email}}</a></dd>
+                        </div>
+                        <div class="customer-detail">
+                            <dt><i class="fa fa-file-text-o" aria-hidden="true"></i> GST number</dt>
+                            <dd>{{item.gstNo}}</dd>
+                        </div>
+                    </dl>
+                    <div class="customer-card__actions" aria-label="Customer actions">
+                        <button class="customer-action customer-action--view" type="button" aria-label="View customer" title="View customer">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </button>
+                        <button class="customer-action customer-action--edit" type="button" aria-label="Edit customer" routerLink="/admin/client-form/{{item.id}}" title="Edit customer">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                        <button class="customer-action customer-action--delete" type="button" (click)="deleteCustomer(item.id)" aria-label="Delete customer" title="Delete customer">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </article>
+            </div>
+            }
+        </div>
+    </section>
+    }
+
+    @else{
+    <section class="client-view-section table-view-section" aria-labelledby="table-view-heading">
+        <div class="view-section-heading">
+            <h2 id="table-view-heading">Table view</h2>
+            <span>Customer details</span>
+        </div>
+        <div class="customer-table-wrap">
+            <table class="table customer-table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Customer</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">Email address</th>
+                        <th scope="col">GST number</th>
+                        <th scope="col" class="customer-table__actions-heading">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @for (item of clientList(); track $index) {
+                    <tr>
+                        <td><span class="customer-id">{{item.id}}</span></td>
+                        <td class="table-customer-name">{{item.name}}</td>
+                        <td>{{item.address}}</td>
+                        <td>{{item.mobile}}</td>
+                        <td><a [href]="item.email">{{item.email}}</a></td>
+                        <td>{{item.gstNo}}</td>
+                        <td>
+                            <div class="customer-actions" aria-label="Customer actions">
+                                <button class="customer-action customer-action--view" type="button" aria-label="View customer" title="View customer">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </button>
+                                <button class="customer-action customer-action--edit" type="button" aria-label="Edit customer" routerLink="/admin/client-form/{{item.id}}" title="Edit customer">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </button>
+                                <button class="customer-action customer-action--delete" (click)="deleteCustomer(item.id)" type="button" aria-label="Delete customer" title="Delete customer">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+    }
+
+</section>

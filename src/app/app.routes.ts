@@ -26,7 +26,7 @@ export const routes: Routes = [
                 canActivate:[authGuardGuard]
             },
             {
-                path:'client-form',
+                path:'client-form/:id',
                 component:ClientForm
             }
         ]

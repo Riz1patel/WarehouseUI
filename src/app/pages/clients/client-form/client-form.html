@@ -1,1 +1,95 @@
-<p>client-form works!</p>
+<section class="client-form-page" aria-labelledby="client-form-title">
+	<a class="back-to-clients" href="/admin/client-list">
+		<i class="fa fa-arrow-left" aria-hidden="true"></i>
+		<span>Back to clients</span>
+	</a>
+
+	<header class="client-form-heading">
+		<div>
+			<p class="client-form-eyebrow">WORKSPACE DIRECTORY</p>
+			<h1 id="client-form-title">Add a customer</h1>
+			<p>Create a customer profile for your warehouse workspace.</p>
+		</div>
+	</header>
+
+	<form class="client-form" aria-label="New customer details" [formGroup]="customerForm">
+		<div class="client-form__intro">
+			<div class="client-form__intro-icon" aria-hidden="true">
+				<i class="fa fa-building-o"></i>
+			</div>
+			<div>
+				<h2>Customer details</h2>
+				<p>Enter the contact and registration information for this customer.</p>
+			</div>
+		</div>
+
+		<div class="client-form__fields">
+			<div class="client-field">
+				<label for="customer-name">Customer name <span aria-hidden="true">*</span></label>
+				<div class="client-input-wrap">
+					<i class="fa fa-user-o" aria-hidden="true"></i>
+					<input class="form-control"
+                     id="customer-name" 
+                     name="name"
+                      type="text"
+                      formControlName="customerName"
+                       placeholder="e.g. Northstar Trading Co." autocomplete="organization" required />
+				</div>
+			</div>
+
+            <div class="client-field">
+				<label for="customer-mobile">Mobile number <span aria-hidden="true">*</span></label>
+				<div class="client-input-wrap">
+					<i class="fa fa-phone" aria-hidden="true"></i>
+					<input class="form-control" formControlName="customerMobile" id="customer-mobile" name="mobile" type="tel" placeholder="e.g. 8009900785" autocomplete="tel" required />
+				</div>
+			</div>
+
+			<div class="client-field">
+				<label for="customer-email">Email address <span aria-hidden="true">*</span></label>
+				<div class="client-input-wrap">
+					<i class="fa fa-envelope-o" aria-hidden="true"></i>
+					<input class="form-control" formControlName="customerEmail"
+                     id="customer-email" name="email" type="email" placeholder="name@company.com" autocomplete="email" required />
+				</div>
+			</div>
+
+			<div class="client-field">
+				<label for="customer-gst">GST number <span aria-hidden="true">*</span></label>
+				<div class="client-input-wrap">
+					<i class="fa fa-file-text-o" aria-hidden="true"></i>
+					<input class="form-control" formControlName="customerGstNo" id="customer-gst" name="gstNo" type="text" placeholder="Enter GST registration number" required />
+				</div>
+			</div>
+
+            <div class="client-field client-field--wide">
+				<label for="customer-address">Address <span aria-hidden="true">*</span></label>
+				<div class="client-input-wrap client-input-wrap--textarea">
+					<i class="fa fa-map-marker" aria-hidden="true"></i>
+					<textarea class="form-control" formControlName="customerAddress" id="customer-address" name="address" rows="3" placeholder="Street, city, state and postal code" autocomplete="street-address" required></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="client-form__footer">
+			<p><span aria-hidden="true">*</span> Required information</p>
+			<div class="client-form__actions">
+				<a class="btn btn-outline-secondary cancel-button" href="/admin/client-list">Cancel</a>
+				
+                @if( currentEditId == 0){
+                    <button class="btn btn-primary save-button" type="button" (click)="saveCustomer()">
+					<i class="fa fa-check" aria-hidden="true"></i>
+					<span>Save customer</span>
+				</button>
+                }
+                @else {
+					<button class="btn btn-primary save-button  update-button" type="button" (click)="updateCustomer()">
+					<i class="fa fa-check" aria-hidden="true"></i>
+					<span>Update customer</span>
+				</button>
+                }
+                
+			</div>
+		</div>
+	</form>
+</section>

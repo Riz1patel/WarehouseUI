@@ -1,12 +1,12 @@
 export class userLoginModel {
-    emailId: string;
+    userName: string;
     password: string;
 
     /**
      *
      */
     constructor() {
-        this.emailId = '';
+        this.userName = '';
         this.password ='';
         
     }
